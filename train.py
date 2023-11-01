@@ -47,7 +47,7 @@ def main(args):
 
     dataset = load_dataset("json", data_files=args.dataset)["train"]
 
-    dataset = dataset.shuffle()
+    dataset = dataset.shuffle(seed=42)
     dataset = dataset.train_test_split(test_size=0.1)
 
     train = dataset["train"]
@@ -72,7 +72,7 @@ def main(args):
         learning_rate=2e-5,
         per_device_train_batch_size=16,
         per_device_eval_batch_size=16,
-        num_train_epochs=5,
+        num_train_epochs=2,
         weight_decay=0.01,
         evaluation_strategy="epoch",
         save_strategy="epoch",
